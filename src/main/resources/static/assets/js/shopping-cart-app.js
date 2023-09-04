@@ -252,7 +252,8 @@ app.controller("myCtrl1", function($scope,$rootScope, $http) {
 		})
 	.then(function() {
 			$('#edit-order').modal('hide');
-			$scope.initialize1();
+			location.reload();
+
 		}).catch(error => {
 			alert("Lỗi cập nhật sản phẩm!");
 			console.log("Error", error);

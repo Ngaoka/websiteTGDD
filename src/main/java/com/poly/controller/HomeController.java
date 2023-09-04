@@ -22,7 +22,8 @@ public class HomeController {
     @RequestMapping("/order")
     public String pageOrder(Model model, HttpServletRequest request) {
     	String username = request.getRemoteUser();
-		model.addAttribute("userorder", ordService.findByUsername(username));
+    	
+		model.addAttribute("userorder", ordService.findByUsername(username));		
         return "layout/_order";
     }
     @RequestMapping("/order/detail/{id}")

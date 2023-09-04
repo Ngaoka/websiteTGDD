@@ -34,10 +34,10 @@ public class OrderRestController {
 	    return orderService.create(orderData);			
 	}
 	
-	@GetMapping("/list")
-	public List<Order> getAllProducts() {
-	    return orderService.findAll();
-	}
+	/*
+	 * @GetMapping("/list") public List<Order> getAllProducts() { return
+	 * orderService.findAll(); }
+	 */
 	
 	@GetMapping("{id}")
 	public Order getOne(@PathVariable("id") Integer id) {
@@ -45,7 +45,7 @@ public class OrderRestController {
 	}
 	
 	
-	@PostMapping("{id}")
+	@PutMapping("{id}")
 	public Order updateOrder(@PathVariable("id") Integer id,@RequestBody Order Order) {
 	   return orderService.save(Order);
 	}

@@ -41,28 +41,28 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="order in orders">
+					<tr th:each="order  :${orders}">
 						<td>
-							{{order.id}}
+							[[${order.id}]]
 						</td>
 						<td >
-							{{order.account.username}}	
+							[[${order.account?.username}]]	
 						</td>
 						<td >
-							{{order.address}}	
+							[[${order.address}]]
 						</td>
 						<td >
-							{{order.total}}	
+							<span th:text="${#numbers.formatDecimal(order.total, 0, 'POINT', 0,'POINT') + ' VNĐ'}"></span>
 						</td>
 						<td>
-							{{order.createDate}}
+							[[${order.createDate}]]
 						</td>
 						<td>
-						<span class="status process" ng-show="order.status === false">Đang xử lí</span>
-						<span class="status completed" ng-show="order.status === true">Thành công</span>
+						<span th:if="${order.status}"><button class="btn btn-primary">Thành công</button></span>
+							<span th:unless="${order.status}"><button class="btn btn-warning">Đang xử lí...</button></span>
 						</td>
 						<td>
-							<button type="button" data-bs-toggle="modal" data-bs-target="#edit-order" ng-click="editorder(order.id)" class="btn btn-outline-primary">Sửa</button>
+							<button type="button" data-bs-toggle="modal" data-bs-target="#edit-order" th:attr="ng-click=@{|editorder(${order.id})|}" class="btn btn-outline-primary">Sửa</button>
 						</td>
 					</tr>
 

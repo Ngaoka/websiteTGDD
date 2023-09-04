@@ -1,76 +1,48 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/admin/_admin :: dynamic(~{::main})}"> 
 
 <main>
-<div class="head-title">
-    <div class="left">
-        <h1>Thống kê</h1>
-    </div>
-</div>
-
-<ul class="box-info">
-    <li><i class='bx bxs-calendar-check'></i> <span class="text">
-            <h3>1020</h3>
-            <p>Đơn hàng</p>
-    </span></li>
-    <li><i class='bx bxs-group'></i> <span class="text">
-            <h3>2834</h3>
-            <p>Tài khoản</p>
-    </span></li>
-    <li><i class='bx bxs-dollar-circle'></i> <span class="text">
-            <h3>$2543</h3>
-            <p>Doanh thu</p>
-    </span></li>
-</ul>
 
 
 <div class="table-data">
-    <div class="order">
-        <div class="head">
-            <h3>Thông tin đơn hàng</h3>
-            <i class='bx bx-search'></i> <i class='bx bx-filter'></i>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tài khoản</th>
-                    <th>Ngày đặt hàng</th>
-                    <th>Trạng thái</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><img th:src="@{/images/people.png}">
-                        <p>John Doe</p></td>
-                    <td>01-10-2021</td>
-                    <td><span class="status completed">Thành công</span></td>
-                </tr>
-                <tr>
-                    <td><img th:src="@{/images/people.png}">
-                        <p>John Doe</p></td>
-                    <td>01-10-2021</td>
-                    <td><span class="status pending">Đóng</span></td>
-                </tr>
-                <tr>
-                    <td><img th:src="@{/images/people.png}">
-                        <p>John Doe</p></td>
-                    <td>01-10-2021</td>
-                    <td><span class="status process">Đang xử lí</span></td>
-                </tr>
-                <tr>
-                    <td><img th:src="@{/images/people.png}">
-                        <p>John Doe</p></td>
-                    <td>01-10-2021</td>
-                    <td><span class="status pending">Đóng</span></td>
-                </tr>
-                <tr>
-                    <td><img th:src="@{/images/people.png}">
-                        <p>John Doe</p></td>
-                    <td>01-10-2021</td>
-                    <td><span class="status completed">Thành công</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+		<div class="order">
+			<div class="head">
+				<h3>Thông tin đơn hàng</h3>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>STT</th>
+						<th>Tài khoản</th>
+						<th>Địa chỉ</th>
+						<th>Tổng hóa đơn</th>
+						<th>Ngày đặt hàng</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="order :${orders}">
+						<td>
+							[[${order.id}]]
+						</td>
+						<td>
+							[[${order.account?.username}]]
+
+						</td>
+						<td>[[${order.address}]]</td>
+						<td>
+							<span th:text="${#numbers.formatDecimal(order.total , 0, 'POINT', 0, 'POINT')} + ' VNĐ'"></span>
+						</td>
+						<td>[[${order.createDate}]]</td>
+						<td><a th:href="@{|/admin/order/detail/${order.id}|}">Chi tiết</a>
+						</td>
+					</tr>
+
+
+
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
 </main>
 </html>

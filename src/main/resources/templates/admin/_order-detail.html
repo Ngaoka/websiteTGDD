@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/admin/_admin :: dynamic(~{::main})}">
+
+<main>
+
+	<div class="table-data">
+		<div class="order">
+			<div class="head">
+				<h3>Đơn hàng chi tiết</h3>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<!--<th>STT</th>-->
+						<th>Tên sản phẩm</th>
+						<th>Giá tiền</th>
+						<th>Số lượng</th>
+						<th>Thành tiền</th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${order.orderDetail}">
+						<td>[[${item.product.name}]]</td>
+						<td>
+							<span th:text="${#numbers.formatDecimal(item.product.price , 0, 'POINT', 0, 'POINT')} + 'đ'"></span>						
+						</td>
+						<td>[[${item.quantity}]]</td>
+						<td>
+							<span th:text="${#numbers.formatDecimal(item.product.price * item.quantity, 0, 'POINT', 0, 'POINT')} + 'đ'"></span>
+						</td>
+					</tr>
+
+
+
+
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</main>
+
+</html>

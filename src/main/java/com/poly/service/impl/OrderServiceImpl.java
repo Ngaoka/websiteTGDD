@@ -50,16 +50,27 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public Order save(Order order) {
 		// TODO Auto-generated method stub
-		Order order1 = new Order();
-		order1.setAccount(order1.getAccount());
-		order1.setCreateDate(order1.getCreateDate());
-		order1.setOrderDetail(order1.getOrderDetail());
-		order1.setAddress(order1.getAddress());		
-		order1.setId(order1.getId());
-		order1.setStatus(order1.getStatus());
-		order1.setTotal(order1.getTotal());
-		return ordDao.save(order1);
+		/*
+		 * Order order1 = new Order(); order1.setAccount(order1.getAccount());
+		 * order1.setCreateDate(order1.getCreateDate());
+		 * order1.setOrderDetail(order1.getOrderDetail());
+		 * order1.setAddress(order1.getAddress()); order1.setId(order1.getId());
+		 * order1.setStatus(order1.getStatus()); order1.setTotal(order1.getTotal());
+		 */
+		return ordDao.save(order);
 	}
+	
+	/*
+	 * @Override public Order save(OrderDTO orderDTO) { // TODO Auto-generated
+	 * method stub Order order = new Order();
+	 * order.setAccount(orderDTO.getAccount());
+	 * order.setCreateDate(orderDTO.getCreateDate());
+	 * order.setOrderDetail(orderDTO.getOrderDetail());
+	 * order.setAddress(orderDTO.getAddress()); order.setId(orderDTO.getId());
+	 * order.setStatus(orderDTO.getStatus()); order.setTotal(orderDTO.getTotal());
+	 * return ordDao.save(order); }
+	 */
+		
 
 	@Override
 	public Order create(JsonNode orderData) {
@@ -118,8 +129,7 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public List<Order> findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return ordDao.findByUsername(username);
 	}
 
 	
